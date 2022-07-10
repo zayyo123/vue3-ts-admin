@@ -87,7 +87,7 @@ git commit --no-verify -am "7/10"
 - **自动部署：**  Centos + Jenkins + Nginx
 
 #### 7.2项目解构
-
+```
     vue3_ts_cms
 │  .browserslistrc
 │  .editorconfig
@@ -442,5 +442,5 @@ git commit --no-verify -am "7/10"
             │  NotFound.vue
             │
             └─src
+```
 
-#### 7.3项目规范
