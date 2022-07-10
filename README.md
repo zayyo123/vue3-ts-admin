@@ -1,10 +1,8 @@
 ## 基于 Vue3+TypeScript 的后台管理系统
 
-> ### 1.线上体验
+> ### 1.Vue3+TS 后台管理系统
 
-[Vue3+TS 后台管理系统在线体验](http://cms..ltd)
-
-**客官如果觉得还不戳，github 上不妨顺手点个 :star:，鼓励一下吧。**
+VueTsCMS是基于Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5等后台系统解决方案。
 
 > ### 2.项目运行
 
@@ -65,7 +63,6 @@ git commit --no-verify -am "7/10"
 ```
 ### 7.项目详细
 
-**VueTsCMS是基于Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5等后台系统解决方案。**
 
 #### 7.1技术支持
 
@@ -87,6 +84,7 @@ git commit --no-verify -am "7/10"
 - **自动部署：**  Centos + Jenkins + Nginx
 
 #### 7.2项目解构
+
 ```
     vue3_ts_cms
 │  .browserslistrc
@@ -443,4 +441,3 @@ git commit --no-verify -am "7/10"
             │
             └─src
 ```
-
