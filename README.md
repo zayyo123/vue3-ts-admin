@@ -1,6 +1,6 @@
 ## 基于 Vue3+TypeScript+ElementPlus+Echart 的后台管理系统
 
-> ### 1.Vue3+TS 后台管理系统。
+> ### 1.Vue3+TS 后台管理系统
 
 vue3-ts-admin是基于Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5等后台系统解决方案。
 
