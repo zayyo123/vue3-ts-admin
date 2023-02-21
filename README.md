@@ -1,12 +1,12 @@
-## 基于 Vue3+TypeScript 的后台管理系统
+## 基于 Vue3+TypeScript+ElementPlus+Echart 的后台管理系统
 
-> ### 1.Vue3+TS 后台管理系统
+> ### 1.Vue3+TS 后台管理系统。
 
-VueTsCMS是基于Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5等后台系统解决方案。
+vue3-ts-admin是基于Vue3、Vuex、VueRouter、VueCLI、 ElementPlus 、TypeScript、Echart5等后台系统解决方案。
 
 > ### 2.项目运行
 
-- git clone 到本地
+- git clone
 - cd 到 vue3_ts_cms 目录下运行：
 
 ```
