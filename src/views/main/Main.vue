@@ -1,9 +1,11 @@
 <template>
   <div class="main">
     <el-container class="main-content">
+      <!-- 侧边栏 -->
       <el-aside :width="menuFold ? '65px' : '210px'">
         <nav-menu :menu-fold="menuFold" />
       </el-aside>
+      <!-- 内容展示区 -->
       <el-container class="page">
         <el-header class="page-header">
           <nav-header @changeMenuFold="changeMenuFold" />
@@ -68,9 +70,11 @@ export default defineComponent({
 .page {
   height: 100%;
 }
+
 .page-header {
   padding: 0px;
 }
+
 .page-content {
   height: calc(100% - 48px);
 }
@@ -95,8 +99,10 @@ export default defineComponent({
   cursor: pointer;
   background-color: #001529;
   transition: width 0.3s linear;
-  scrollbar-width: none; /* firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  /* firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
 
   &::-webkit-scrollbar {
     display: none;
@@ -106,5 +112,4 @@ export default defineComponent({
 .el-main {
   color: #333;
   background-color: #f0f2f5;
-}
-</style>
+}</style>
