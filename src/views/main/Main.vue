@@ -7,9 +7,11 @@
       </el-aside>
       <!-- 内容展示区 -->
       <el-container class="page">
+        <!-- 内容区的头部 -->
         <el-header class="page-header">
           <nav-header @changeMenuFold="changeMenuFold" />
         </el-header>
+        <!-- 内容区的主体 -->
         <el-main class="page-content">
           <el-config-provider :locale="zhCn">
             <router-view v-slot="{ Component }">
@@ -112,4 +114,5 @@ export default defineComponent({
 .el-main {
   color: #333;
   background-color: #f0f2f5;
-}</style>
+}
+</style>
