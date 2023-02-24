@@ -1,3 +1,4 @@
+// 路由鉴权
 import type { RouteRecordRaw } from "vue-router";
 import { BreadCrumbItemType } from "@/common-ui/breadcrumb";
 
