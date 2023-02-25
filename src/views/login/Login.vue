@@ -3,12 +3,14 @@
     <div class="content">
       <h1>后台管理系统</h1>
       <el-tabs type="border-card" stretch class="el-tabs" v-model="tabsName">
+        <!-- 用户登录 -->
         <el-tab-pane name="usernumber">
           <template #label>
             <span><i class="el-icon-s-custom"></i> 用户名登陆</span>
           </template>
           <login-user ref="loginUserRef"></login-user>
         </el-tab-pane>
+        <!-- 手机号登录 -->
         <el-tab-pane name="userphone">
           <template #label>
             <span><i class="el-icon-mobile-phone"></i> 手机号登陆</span>
