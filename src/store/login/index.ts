@@ -6,9 +6,10 @@ import {
   userInfoRequest,
   userMenuRequest
 } from "@/service/login";
+
 import { AccountLoginType } from "@/service/login/types";
 import localCache from "@/utils/cache";
-import menuToRoute, { jurisdictionList } from "@/utils/menuToRoute";
+import jurisdictionList, { jurisdictionList } from "@/utils/menuToRoute";
 
 import { RootStateType } from "../types";
 import { LoginStateType } from "./types";
@@ -32,6 +33,7 @@ const loginModule: Module<LoginStateType, RootStateType> = {
     },
     changeUserMenus(state, payload: any) {
       state.userMenus = payload;
+      // 使用Vue Router动态地添加路由映射规则
       const menusInfo = menuToRoute(payload);
       menusInfo.forEach((item) => {
         router.addRoute("main", item);
@@ -61,7 +63,9 @@ const loginModule: Module<LoginStateType, RootStateType> = {
       // 路由跳转
       router.push("/main");
     },
+    // 从本地缓存中获取存储的用户信息和菜单信息，并将其存储到 Vuex 的状态中，以便应用程序中的其他组件可以访问这些信息。
     uploadAction(context) {
+      // 存储的 token（令牌）
       const token = localCache.getCache("token");
       if (token) {
         context.commit("changeToken", token);
