@@ -39,6 +39,7 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
   return routes;
 }
 
+// 匹配，后端发来的路由形象和本地定义的路由映射
 export function pathMapToMenu(
   useMenus: any[],
   path: string,
@@ -61,6 +62,7 @@ export function pathMapToMenu(
   }
 }
 
+// 将指定路径对应的菜单项转换成面包屑菜单项数组，并返回该数组
 export function breadCrumbMapToMenu(
   useMenus: any[],
   path: string
@@ -85,6 +87,7 @@ export function jurisdictionList(useMenus: any[]): any {
   return permissionList;
 }
 
+// 从给定的菜单数据中获取所有权限，返回一个权限列表
 export function mapFirstMenuList(useMenus: any[]): {
   value: any;
   title: any;
@@ -105,6 +108,7 @@ export function mapFirstMenuList(useMenus: any[]): {
   return menuList;
 }
 
+// 将传入的菜单列表中所有叶子节点的id值提取出来，组成一个数组并返回
 export function mapHalfCheckedKeys(menuList: any[]): number[] {
   const keyList: number[] = [];
   const _recursionMapKeys = (menuList: any[]) => {
