@@ -11,10 +11,14 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
   // 使用Webpack的require.context方法来创建一个上下文，用于匹配 "@/router/main" 目录及其子目录中的所有 .ts 文件。
   const routeFiles = require.context("@/router/main", true, /\.ts$/);
   routeFiles.keys().forEach((filePath) => {
+    // 获取与后端发送的目录信息相匹配的route路径
     const routeModule = require("@/router/main" + filePath.split(".")[1]);
     allRoutes.push(routeModule.default);
   });
+
   // 递归函数 获取可点击部分的url，并进行筛选
+
+  /**遍历 useMenus 中的每一个菜单项，如果这个菜单项是第一级菜单，就调用 findRouteFun 函数自身，传入这个菜单的子菜单列表作为参数，继续递归下去。如果这个菜单项是第二级菜单，就在 allRoutes 中找到 path 属性和这个菜单的 url 属性匹配的路由项，将这个路由项推入 routes 数组中，并且如果 firstMenu 为空，则将这个菜单项设置为 firstMenu。最后，这个函数返回 routes 数组，这个数组包含了需要授权访问的路由项列表。 */
   function findRouteFun(useMenus: any[]): void {
     for (const menu of useMenus) {
       if (menu.type === 1) {
