@@ -1,4 +1,5 @@
 // 路由鉴权
+
 import type { RouteRecordRaw } from "vue-router";
 import { BreadCrumbItemType } from "@/common-ui/breadcrumb";
 
@@ -7,6 +8,7 @@ export default function (useMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = [];
   // 加入全部路由
   const allRoutes: RouteRecordRaw[] = [];
+  // 使用Webpack的require.context方法来创建一个上下文，用于匹配 "@/router/main" 目录及其子目录中的所有 .ts 文件。
   const routeFiles = require.context("@/router/main", true, /\.ts$/);
   routeFiles.keys().forEach((filePath) => {
     const routeModule = require("@/router/main" + filePath.split(".")[1]);
