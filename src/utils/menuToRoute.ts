@@ -44,7 +44,9 @@ export function pathMapToMenu(
   path: string,
   breadCrumbList?: BreadCrumbItemType[]
 ): any {
+  // 遍历菜单数据 useMenus 的每一项来查找与路由地址 path 匹配的菜单项
   for (const menu of useMenus) {
+    // 如果当前菜单项是一个一级菜单，函数将递归地调用自身，以查找它的子菜单中是否包含匹配的菜单项。如果找到了匹配的菜单项，函数将把当前菜单项和匹配的菜单项都添加到面包屑导航列表 breadCrumbList 中，并返回匹配的菜单项
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], path);
       if (findMenu) {
@@ -52,6 +54,7 @@ export function pathMapToMenu(
         breadCrumbList?.push(findMenu);
         return findMenu;
       }
+      // 如果当前菜单项是一个二级菜单，函数将判断它的路由地址是否与待查找的路由地址 path 相等。如果相等，则直接返回这个菜单项。
     } else if (menu.type === 2 && menu.url === path) {
       return menu;
     }
