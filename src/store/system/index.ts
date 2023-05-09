@@ -79,6 +79,7 @@ const systemModule: Module<SystemStateType, RootStateType> = {
     }
   },
   actions: {
+     // 通过传入 payload 参数来决定获取哪个页面的数据
     async dataListAction({ commit }, payload) {
       let dataUrl = "";
       switch (payload.pageName) {
@@ -108,13 +109,15 @@ const systemModule: Module<SystemStateType, RootStateType> = {
       const result = await getDataList(dataUrl, payload.queryInfo);
 
       const pageName = firstCapitalLetter(payload.pageName);
-
+      // 改变对应页面的数据列表和总数量。
       commit(`change${pageName}List`, result.data.list);
       commit(`change${pageName}Count`, result.data.totalCount);
     },
+  //  通过传入 payload 参数来决定删除哪个页面的数据
     async deleteDataAction(context, payload) {
       const { pageName, id } = payload;
       const url = `/${pageName}/${id}`;
+      // 删除对应数据，然后重新获取当前页面数据。
       await deleteDataList(url);
       context.dispatch("dataListAction", {
         pageName,
