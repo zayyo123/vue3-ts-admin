@@ -2,6 +2,7 @@ import { Module } from "vuex";
 import type { AnalysisStateType } from "./types";
 import type { RootStateType } from "../types";
 
+// 导入系统请求页的axios请求
 import {
   getGoodsAddressSale,
   getGoodsCategoryCount,
@@ -10,6 +11,7 @@ import {
   getGoodsAmountList,
   getGoodsSaleTop10
 } from "@/service/main/analysis";
+
 const analysisModule: Module<AnalysisStateType, RootStateType> = {
   namespaced: true,
   state() {

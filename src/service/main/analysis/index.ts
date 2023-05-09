@@ -9,6 +9,7 @@ enum ChartsUrl {
   GOODS_AMOUNT_LIST = "/goods/amount/list",
   GOODS_SALE_TOP10 = "/goods/sale/top10"
 }
+// 导出系统分析页的数据请求API
 
 export function getGoodsCategoryCount() {
   return zyRequest.get<ResultType>({
