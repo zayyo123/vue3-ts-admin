@@ -48,12 +48,15 @@ export default defineComponent({
   setup() {
     const menuFold = ref(false);
     const changeMenuFold = (isFold: boolean) => {
+      // 将menuFold的值设置为isFold
       menuFold.value = isFold;
     };
     return {
+      // 返回changeMenuFold和menuFold的值
       changeMenuFold,
       menuFold,
       zhCn
+    };zhCn
     };
   }
 });

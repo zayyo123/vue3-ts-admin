@@ -1,34 +1,16 @@
 <template>
   <div class="user">
-    <page-search
-      :formConfig="formConfigList"
-      @searchKeyValue="searchBtnClic"
-      @searchReset="resetBtnClic"
-    ></page-search>
+    <page-search :formConfig="formConfigList" @searchKeyValue="searchBtnClic" @searchReset="resetBtnClic"></page-search>
     <div class="user-tabel">
-      <page-tabel
-        :tabelConfig="tableConfigList"
-        pageName="users"
-        ref="pageTabelRef"
-        @editorBtnClic="handleEditorBtnClic"
-        @createBtnClic="handleCreateBtnClic"
-      >
+      <page-tabel :tabelConfig="tableConfigList" pageName="users" ref="pageTabelRef" @editorBtnClic="handleEditorBtnClic"
+        @createBtnClic="handleCreateBtnClic">
         <template v-slot:status="scope">
-          <el-button
-            :type="scope.row.status === 2 ? 'danger' : 'success'"
-            size="small"
-            plain
-            >{{ scope.row.enabel === 2 ? "启用" : "停用" }}</el-button
-          >
+          <el-button :type="scope.row.status === 2 ? 'danger' : 'success'" size="small" plain>{{ scope.row.enabel === 2 ?
+            "启用" : "停用" }}</el-button>
         </template>
       </page-tabel>
     </div>
-    <page-dialog
-      ref="pageDialogRef"
-      pageName="users"
-      :pageDialogConfig="dialogConfigRef"
-      :defaultValue="defaultValue"
-    >
+    <page-dialog ref="pageDialogRef" pageName="users" :pageDialogConfig="dialogConfigRef" :defaultValue="defaultValue">
     </page-dialog>
   </div>
 </template>
@@ -62,9 +44,11 @@ export default defineComponent({
       return item.field === "password";
     });
     const editorCallback = () => {
+      // 将表单项隐藏
       formItem!.isHidden = true;
     };
     const createCallback = () => {
+      // 将表单项显示
       formItem!.isHidden = false;
     };
     const [
@@ -76,26 +60,36 @@ export default defineComponent({
     // 对配置文件进行操作
 
     const dialogConfigRef = computed(() => {
+      // 获取dialogConfig的值
       const departmentItem = dialogConfig.formItem.find((item) => {
+        // 查找dialogConfig的formItem中field为departmentId的元素
         return item.field === "departmentId";
       });
+      // 获取store中的departmentList
       const departmentList = store.state.departmentList.map((item) => {
+        // 将item映射成一个对象，并赋值给title和value
         return {
           title: item.name,
           value: item.id
         };
       });
+      // 获取dialogConfig的formItem中field为roleId的元素
       const roleItem = dialogConfig.formItem.find((item) => {
+        // 查找dialogConfig的formItem中field为roleId的元素
         return item.field === "roleId";
       });
+      // 获取store中的roleList
       const roleList = store.state.roleList.map((item) => {
+        // 将item映射成一个对象，并赋值给title和value
         return {
           title: item.name,
           value: item.id
         };
       });
+      // 将departmentItem和roleItem映射成一个对象，并赋值给departmentItem!.options和roleItem!.options
       departmentItem!.options = departmentList;
       roleItem!.options = roleList;
+      // 返回dialogConfig
       return dialogConfig;
     });
 
