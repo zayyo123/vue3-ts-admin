@@ -24,16 +24,19 @@ export default defineComponent({
     const editRef = ref<InstanceType<typeof ZYEditor>>();
     const title = ref<string>();
     const publishArticlesClic = () => {
+      // 调用publishArticlesData函数，传入参数title和cotent
       publishArticlesData({
         title: title.value!,
         cotent: editRef.value!.content.html
       })
+        // 如果发布成功，调用ElMessage.success函数，传入参数message和type，并显示文字
         .then(() => {
           ElMessage.success({
             message: "文章发布成功",
             type: "success"
           });
         })
+        // 如果发布失败，调用ElMessage.error函数，传入参数message
         .catch(() => {
           ElMessage.error("文章发布失败");
         });

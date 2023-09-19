@@ -63,19 +63,29 @@ export default defineComponent({
 
     // 本身是响应式，但是赋值之后，就不在是响应式的范畴了
     const store = useStore();
+    // 获取菜单列表
     const entireMenuList = computed(() => store.state.menuList);
 
+    // 获取勾选的菜单
     const checkedList = ref({});
     const checkBoxChange = (data1: any, data2: any) => {
+      // 获取勾选的菜单和半勾选的菜单
       const { checkedKeys, halfCheckedKeys } = data2;
-      const menuList = [...checkedKeys, ...halfCheckedKeys];
+      // 将勾选的菜单和半勾选的菜单合并
+      const menuList = [...checkedKeys,...halfCheckedKeys];
+      // 将合并后的菜单赋值给checkedList
       checkedList.value = { menuList };
     };
+    // 获取树形组件
     const treeRef = ref<InstanceType<typeof ElTree>>();
+    // 当树形组件的勾选框发生变化时，调用editorCallback函数
     const editorCallback = (payload: any) => {
+      // 获取勾选的菜单
       const menuList = mapHalfCheckedKeys(payload.menuList);
 
+      // 等待下一次调用nextTick函数
       nextTick(() => {
+        // 设置勾选的菜单
         treeRef.value!.setCheckedKeys(menuList, false);
       });
     };

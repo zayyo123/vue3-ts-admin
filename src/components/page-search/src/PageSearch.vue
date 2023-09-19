@@ -34,15 +34,20 @@ export default defineComponent({
   components: { ZYForm },
   name: "PageSearch",
   setup(props, { emit }) {
-    const formItems = props.formConfig?.formItem ?? [];
+    // 获取formConfig中的formItem
+    const formItems = props.formConfig?.formItem?? [];
+    // 初始化formValue
     const formValue: any = {};
+    // 遍历formItems，将formValue中的值赋值给formData
     for (const item of formItems) {
       formValue[item.field] = "";
     }
+    // 将formValue赋值给formData
     const formData = ref(formValue);
 
     // 检索
     const handleSearchClick = () => {
+      // 发出searchKeyValue事件，传入formData.value
       emit("searchKeyValue", formData.value);
     };
     // 重置
@@ -54,6 +59,7 @@ export default defineComponent({
       for (const item in formValue) {
         formData.value[item] = formValue[item];
       }
+      // 发出searchReset事件
       emit("searchReset");
     };
 

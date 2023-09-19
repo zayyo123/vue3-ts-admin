@@ -46,9 +46,12 @@ export default defineComponent({
     let loginPhoneRef = ref<InstanceType<typeof LoginPhone>>();
     let tabsName = ref<string>("usernumber");
     const logInNow = () => {
+      // 如果tabsName的值为usernumber
       if (tabsName.value === "usernumber") {
+        // 调用loginUserRef的value的loginUserAction方法，并传入rememberPassword的值
         loginUserRef.value?.loginUserAction(rememberPassword.value);
       } else {
+        // 否则调用loginPhoneRef的value的loginPhoneAction方法
         loginPhoneRef.value?.loginPhoneAction();
       }
     };

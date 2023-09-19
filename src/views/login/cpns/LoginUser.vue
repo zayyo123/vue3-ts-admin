@@ -1,12 +1,6 @@
 <template>
   <div class="login-user">
-    <el-form
-      label-width="70px"
-      :model="account"
-      :rules="loginUserRules"
-      ref="elFormRef"
-      class="el-form"
-    >
+    <el-form label-width="70px" :model="account" :rules="loginUserRules" ref="elFormRef" class="el-form">
       <el-form-item label="账号" prop="name">
         <el-input v-model="account.name"></el-input>
       </el-form-item>
@@ -35,8 +29,10 @@ export default defineComponent({
     const store = useStore();
     const elFormRef = ref<InstanceType<typeof ElForm>>();
     const loginUserAction = (rememberPassword: boolean) => {
+      // 验证表单
       elFormRef.value?.validate((res) => {
         if (res) {
+          // 如果记住密码，则记住用户名和密码
           if (rememberPassword) {
             // 记住密码
             localCache.setCache("name", account.name);
@@ -44,6 +40,7 @@ export default defineComponent({
             store.dispatch("login/accountLoginAction", { ...account });
             // 开始登陆操作
           } else {
+            //浏览器缓存账号和密码
             localCache.setCache("name", "");
             localCache.setCache("password", "");
           }

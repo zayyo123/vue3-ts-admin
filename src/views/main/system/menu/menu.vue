@@ -1,17 +1,9 @@
 <template>
   <div class="menu">
-    <page-tabel
-      :tabelConfig="TabelConfig"
-      pageName="menu"
-      @editorBtnClic="handleEditorBtnClic"
-      @createBtnClic="handleCreateBtnClic"
-    ></page-tabel>
-    <page-dialog
-      pageName="menu"
-      :pageDialogConfig="menuDialogConfig"
-      ref="pageDialogRef"
-      :defaultValue="defaultValue"
-    ></page-dialog>
+    <page-tabel :tabelConfig="TabelConfig" pageName="menu" @editorBtnClic="handleEditorBtnClic"
+      @createBtnClic="handleCreateBtnClic"></page-tabel>
+    <page-dialog pageName="menu" :pageDialogConfig="menuDialogConfig" ref="pageDialogRef"
+      :defaultValue="defaultValue"></page-dialog>
   </div>
 </template>
 
@@ -39,14 +31,21 @@ export default defineComponent({
     ] = operationLinkage();
 
     const menuDialogConfig = computed(() => {
+      // 获取store中的menuList
       const store = useStore();
+      // 获取menuList中的第一级菜单
       const menuList = mapFirstMenuList(store.state.menuList);
+      // 获取DialogConfig中的formItem中的parentId字段
       const parentSection = DialogConfig.formItem.find((item) => {
         return item.field === "parentId";
       });
+      // 将menuList赋值给parentSection的options属性
       parentSection!.options = menuList;
+      // 返回DialogConfig
       return DialogConfig;
     });
+
+
 
     return {
       TabelConfig,

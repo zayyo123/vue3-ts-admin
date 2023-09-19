@@ -26,14 +26,19 @@ export default defineComponent({
     });
     let instance: any;
     onMounted(() => {
+      // 创建WangEditor实例
       instance = new WangEditor(editorRef.value);
+      // 设置配置
       Object.assign(instance.config, {
         onchange() {
           syncHTML();
         }
       });
+      // 设置菜单提示位置
       instance.config.menuTooltipPosition = "down";
+      // 设置全屏显示
       instance.config.showFullScreen = true;
+      // 创建实例
       instance.create();
       // 监听屏幕大小时间
       window.onresize = () => {
@@ -41,6 +46,7 @@ export default defineComponent({
       };
     });
 
+    // 卸载时销毁实例
     onBeforeUnmount(() => {
       instance.destroy();
       instance = null;
@@ -53,7 +59,9 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement>();
     contentRef.value?.setAttribute;
     function setEditorBoxSize() {
+      // 获取导航菜单和内容部分的高度
       const [navMenu, bodyContent]: any = editorRef.value!.children;
+      // 设置内容部分的高度
       const height = contentRef.value!.offsetHeight - navMenu.offsetHeight;
       bodyContent.style.height = height + "px";
     }
@@ -81,6 +89,7 @@ export default defineComponent({
     margin-right: 10px;
     height: 100%;
   }
+
   .content {
     flex: 1;
     padding: 10px 15px;

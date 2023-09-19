@@ -4,14 +4,8 @@
       <img src="~@/assets/images/logo.png" alt="" />
       <span class="title" v-show="!menuFold">Vue3+TS</span>
     </div>
-    <el-menu
-      class="el-menu-vertical"
-      :default-active="defaultActive"
-      background-color="#0c2135"
-      text-color="#b7bdc3"
-      active-text-color="#0a60bd"
-      :collapse="menuFold"
-    >
+    <el-menu class="el-menu-vertical" :default-active="defaultActive" background-color="#0c2135" text-color="#b7bdc3"
+      active-text-color="#0a60bd" :collapse="menuFold">
       <template v-for="submenu in userMenus" :key="submenu.id">
         <template v-if="submenu.type === 1">
           <el-submenu :index="submenu.id + ''">
@@ -20,11 +14,7 @@
               <span>{{ submenu.name }}</span>
             </template>
             <template v-for="item in submenu.children" :key="item.id">
-              <el-menu-item
-                :index="item.id + ''"
-                @click="menuItemClic(item.url)"
-                >{{ item.name }}</el-menu-item
-              >
+              <el-menu-item :index="item.id + ''" @click="menuItemClic(item.url)">{{ item.name }}</el-menu-item>
             </template>
           </el-submenu>
         </template>
@@ -53,15 +43,24 @@ export default defineComponent({
   },
   name: "NavMenu",
   setup() {
+    // 使用useStore()获取store
     const store = useStore();
+    // 使用useRouter()获取router
     const router = useRouter();
+    // 使用useRoute()获取route
     const route = useRoute();
+    // 获取用户菜单
     const userMenus = computed(() => store.state.login.userMenus);
+    // 获取路由路径对应的菜单
     const menu = pathMapToMenu(userMenus.value, route.path);
+    // 打印菜单
     // console.log(menu);
 
+    // 默认激活的菜单
     const defaultActive = menu.id + "";
+    // 菜单项的点击事件
     const menuItemClic = (url: string) => {
+      // 跳转到指定的路径
       router.push(url);
     };
     return {
@@ -105,6 +104,7 @@ export default defineComponent({
   // 目录
   .el-submenu {
     background-color: #001529 !important;
+
     // 二级菜单 ( 默认背景 )
     .el-menu-item {
       padding-left: 50px !important;

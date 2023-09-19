@@ -1,9 +1,6 @@
 <template>
   <div class="z-y-echarts">
-    <div
-      ref="echartRef"
-      :style="{ width: width, height: height, zoom: zoom }"
-    ></div>
+    <div ref="echartRef" :style="{ width: width, height: height, zoom: zoom }"></div>
   </div>
 </template>
 
@@ -36,8 +33,11 @@ export default defineComponent({
   setup(props) {
     const echartRef = ref<HTMLDivElement>();
     onMounted(() => {
+      // 初始化echart
       const { setChartOption } = echartInit(echartRef.value!);
+      // 监听echartRef.value的变化
       watchEffect(() => {
+        // 设置echart的option
         setChartOption(props.options);
       });
     });

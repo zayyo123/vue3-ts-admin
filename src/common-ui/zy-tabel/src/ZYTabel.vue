@@ -109,13 +109,16 @@ export default defineComponent({
   setup(props, { emit }) {
     // 判断是否全部选中
     const handleSelectionChange = (value: any) => {
+      // 当选择框发生变化时触发
       emit("handleMultipleChoice", value);
     };
     const handleSizeChange = (val: number) => {
-      emit("update:page", { ...props.page, pageSize: val });
+      // 当页面大小发生变化时触发
+      emit("update:page", {...props.page, pageSize: val });
     };
     const handleCurrentChange = (val: number) => {
-      emit("update:page", { ...props.page, currentPage: val });
+      // 当页面页码发生变化时触发
+      emit("update:page", {...props.page, currentPage: val });
     };
     return { handleSelectionChange, handleSizeChange, handleCurrentChange };
   }

@@ -1,12 +1,6 @@
 <template>
   <div class="login-phone">
-    <el-form
-      label-width="70px"
-      :model="account"
-      :rules="loginPhoneRules"
-      ref="elFormRef"
-      class="el-form"
-    >
+    <el-form label-width="70px" :model="account" :rules="loginPhoneRules" ref="elFormRef" class="el-form">
       <el-form-item label="手机号" prop="phonenumber">
         <el-input v-model="account.phonenumber"></el-input>
       </el-form-item>
@@ -31,11 +25,15 @@ export default defineComponent({
   name: "LoginPhone",
   setup() {
     const account = reactive({
+      // 手机号
       phonenumber: "",
+      // 密码
       password: ""
     });
+    // 定义一个变量，用于存储表单实例
     const elFormRef = ref<InstanceType<typeof ElForm>>();
     const loginPhoneAction = () => {
+      // 调用ElForm的validate方法，验证用户输入的手机号和密码
       elFormRef.value?.validate((res) => {
         // 验证登陆逻辑
         console.log(res);
@@ -43,14 +41,19 @@ export default defineComponent({
     };
     return { account, loginPhoneRules, elFormRef, loginPhoneAction };
   }
-});
+
+
+}
+);
 </script>
 
 <style lang="less" scoped>
 .el-form {
   padding-top: 10px;
+
   .password-btn {
     display: flex;
+
     .el-btn {
       margin-left: 5px;
       padding-left: 5px;

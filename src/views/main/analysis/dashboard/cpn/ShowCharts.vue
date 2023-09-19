@@ -57,9 +57,11 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const goodsCategoryFavor = computed(() => {
+      // 获取商品分类收藏的数据
       const valueList: string[] = [];
       const keyList: number[] = [];
       store.state.analysis.goodsCategoryFavor.map((item) => {
+        // 将商品收藏的类别名称和商品收藏的类别id放入valueList和keyList数组中
         valueList.push(item.goodsFavor);
         keyList.push(item.name);
       });
@@ -69,12 +71,14 @@ export default defineComponent({
       };
     });
     const goodsCategoryCount = computed(() => {
+      // 获取商品分类总数的数据
       return store.state.analysis.goodsCategoryCount.map((item) => ({
         value: item.goodsCount,
         name: item.name
       }));
     });
     const goodsCategorySale = computed(() => {
+      // 获取商品分类销量的数据
       const valueList: string[] = [];
       const keyList: number[] = [];
       store.state.analysis.goodsCategorySale.map((item) => {
@@ -87,6 +91,7 @@ export default defineComponent({
       };
     });
     const goodsAddressSale = computed(() => {
+      // 获取地址销量的数据
       const dataList: any[] = [];
       store.state.analysis.goodsAddressSale.map((item) => {
         dataList.push({

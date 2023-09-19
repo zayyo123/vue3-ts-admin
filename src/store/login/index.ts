@@ -18,20 +18,26 @@ const loginModule: Module<LoginStateType, RootStateType> = {
   state() {
     return {
       token: "",
+      // 用户信息
       userInfo: {},
+      // 用户菜单
       userMenus: [],
+      // 权限列表
       permissionList: []
     };
   },
   getters: {},
   mutations: {
     changeToken(state, token: string) {
+      // 更新state中的token
       state.token = token;
     },
     changeUserInfo(state, payload: any) {
+      // 更新state中的userInfo
       state.userInfo = payload;
     },
     changeUserMenus(state, payload: any) {
+      // 更新state中的userMenus
       state.userMenus = payload;
       // 使用Vue Router动态地添加路由映射规则
       const menusInfo = menuToRoute(payload);
@@ -39,6 +45,7 @@ const loginModule: Module<LoginStateType, RootStateType> = {
         router.addRoute("main", item);
       });
 
+      // 获取授权列表
       const permissionList = jurisdictionList(payload);
       state.permissionList = permissionList;
     }

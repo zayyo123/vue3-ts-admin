@@ -89,7 +89,9 @@ const components = [
 ];
 
 export default function (app: App): void {
+  // 遍历components数组
   for (const cpn of components) {
+    // 将每一个元素赋值给app.component
     app.component(cpn.name, cpn);
   }
 }

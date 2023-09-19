@@ -1,12 +1,6 @@
 <template>
   <div class="page-dialog">
-    <el-dialog
-      title="数据"
-      destroy-on-close
-      v-model="centerDialogVisible"
-      width="30%"
-      center
-    >
+    <el-dialog title="数据" destroy-on-close v-model="centerDialogVisible" width="30%" center>
       <div class="dialog-content">
         <z-y-form v-bind="pageDialogConfig" v-model="dialogInfo"></z-y-form>
         <slot></slot>
@@ -57,6 +51,7 @@ export default defineComponent({
     watch(
       () => props.defaultValue,
       (newValue) => {
+        // 根据formItem配置，将新值添加到dialogInfo.value中
         for (const item of props.pageDialogConfig!.formItem) {
           dialogInfo.value[`${item.field}`] = newValue[`${item.field}`];
         }
@@ -64,7 +59,9 @@ export default defineComponent({
     );
     const store = useStore();
     const submitBtnClic = () => {
+      // 关闭弹窗
       centerDialogVisible.value = false;
+      // 如果没有默认值，则执行创建操作
       if (Object.keys(props.defaultValue).length === 0) {
         console.log({
           pageName: props.pageName,
@@ -76,6 +73,7 @@ export default defineComponent({
           queryInfo: { ...dialogInfo.value, ...props.otherInfo }
         });
       } else {
+        // 如果有默认值，则执行编辑操作
         store.dispatch("system/editorPageDataAction", {
           pageName: props.pageName,
           userId: props.defaultValue.id,

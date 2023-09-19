@@ -6,6 +6,7 @@ const zyRequest = new ZYRequest({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: Number(process.env.VUE_APP_TIME_OUT),
   interceptors: {
+    // 请求拦截器
     requestInterceptor(config) {
       // 携带token的拦截
       const token = localCache.getCache("token");
@@ -16,12 +17,15 @@ const zyRequest = new ZYRequest({
       }
       return config;
     },
+    // 请求拦截器抛出错误
     requestInterceptorCatch(error) {
       return error;
     },
+    // 响应拦截器
     responseInterceptor(result) {
       return result;
     },
+    // 响应拦截器抛出错误
     responseInterceptorCatch(error) {
       return error;
     }

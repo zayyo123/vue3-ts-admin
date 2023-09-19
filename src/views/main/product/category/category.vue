@@ -45,6 +45,7 @@ export default defineComponent({
     store.dispatch("analysis/goodsSaleTop10Action");
 
     const chartsData = computed(() => {
+      // 获取store中的analysis中的goodsSaleTop10数组，并将其转换为对象，并返回
       return store.state.analysis.goodsSaleTop10.map((goods) => {
         return { name: goods.name, value: goods.saleCount };
       });

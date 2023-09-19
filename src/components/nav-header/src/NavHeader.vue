@@ -1,10 +1,6 @@
 <template>
   <div class="nav-header">
-    <i
-      class="fold-menu"
-      :class="isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
-      @click="menuFoldAction"
-    ></i>
+    <i class="fold-menu" :class="isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'" @click="menuFoldAction"></i>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo" />
 
     <div class="user-info">
@@ -15,10 +11,7 @@
         <i @click="showDialogClic('gonggao')" class="icon-gonggao1"></i>
         <i @click="showDialogClic('runtime')" class="icon-tingchewei"></i>
       </div>
-      <el-avatar
-        size="medium"
-        src="https://img-blog.csdnimg.cn/1aa0e101a21e4b3c92dd610c1098e82e.png"
-      ></el-avatar>
+      <el-avatar size="medium" src="https://img-blog.csdnimg.cn/1aa0e101a21e4b3c92dd610c1098e82e.png"></el-avatar>
       <el-dropdown>
         <div class="el-dropdown-link">
           <span class="user-name">{{ userName }}</span>
@@ -26,9 +19,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item icon="el-icon-plus">我的信息</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus" @click="exitLoginClic"
-              >退出登陆</el-dropdown-item
-            >
+            <el-dropdown-item icon="el-icon-circle-plus" @click="exitLoginClic">退出登陆</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -61,12 +52,15 @@ export default defineComponent({
     const router = useRouter();
     const userInfo = computed(() => store.state.login.userInfo);
     const breadCrumbInfo = computed(() => {
+      // 获取路由路径
       const route = useRoute();
       const path = route.path;
+      // 获取菜单信息
       return breadCrumbMapToMenu(store.state.login.userMenus, path);
     });
 
     const menuFoldAction = () => {
+      // 展开/折叠菜单
       emit("changeMenuFold", isFold.value);
       isFold.value = !isFold.value;
     };
@@ -78,16 +72,22 @@ export default defineComponent({
     // qq/weichat/公告 图标
     const navDialogRef = ref<InstanceType<typeof NavDialog>>();
     const showDialogClic = (flag: string) => {
+      // 显示对话框
       navDialogRef.value!.isShow = true;
+      // 如果flag为qq，则将showFlag设置为1
       if (flag === "qq") {
         navDialogRef.value!.showFlag = 1;
       } else if (flag === "weichat") {
+        // 如果flag为weichat，则将showFlag设置为2
         navDialogRef.value!.showFlag = 2;
       } else if (flag === "gonggao") {
+        // 如果flag为gonggao，则将showFlag设置为3
         navDialogRef.value!.showFlag = 3;
       } else if (flag === "runtime") {
+        // 如果flag为runtime，则将showFlag设置为4
         navDialogRef.value!.showFlag = 4;
       }
+
     };
 
     // 退出登陆
@@ -120,29 +120,35 @@ export default defineComponent({
   padding: 0 20px;
   align-items: center;
   justify-content: space-evenly;
+
   .fold-menu {
     font-size: 30px;
     cursor: pointer;
   }
+
   .bread-crumb {
     flex: 1;
     text-align: left;
     margin-left: 10px;
   }
+
   .user-info {
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: "iconfont";
+
     .other-operate {
       font-size: 25px;
       margin-right: 10px;
+
       i {
         margin: 0 12px;
         user-select: none;
         cursor: pointer;
       }
     }
+
     .user-name {
       margin-left: 10px;
       margin-right: 10px;
